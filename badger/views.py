@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from .models import Employee
 
-# Create your views here.
+class EmployeeCreate(CreateView):
+    model = Employee
+    fields = ['first_name', 'last_name']
