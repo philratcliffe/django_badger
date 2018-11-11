@@ -4,4 +4,5 @@ from .models import Employee
 
 class EmployeeCreate(CreateView):
     model = Employee
-    fields = ['first_name', 'last_name']
+    fields = ['first_name', 'last_name', 'badges']
+    success_url = '/admin'
