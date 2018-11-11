@@ -10,7 +10,7 @@ class Badge(TimeStampedModel):
 class Employee(TimeStampedModel):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    badges = models.ManyToManyField(Badge, null=True, blank=True)
+    badges = models.ManyToManyField(Badge, blank=True)
 
     def __str__(self):
         return "{} {}".format(self.first_name, self.last_name)
