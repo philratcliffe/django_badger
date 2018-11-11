@@ -5,6 +5,12 @@
   <meta charset="utf-8">
 
   <title>Employee Form</title>
+  <h1> Employee Form</h1>
+  <form action={% url 'badger:add_employee' %} method='post'}>
+  {% csrf_token %}
+  {{form}}
+  <input type='submit'>
+  </form>
 
 </head>
 

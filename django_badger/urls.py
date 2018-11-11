@@ -21,7 +21,7 @@ import badger
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('badger/', include('badger.urls'))
+    path('badger/', include('badger.urls', namespace='badger')),
 ]
 
 if settings.DEBUG:
