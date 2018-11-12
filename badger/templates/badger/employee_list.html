@@ -1,0 +1,23 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Employee List</title>
+</head>
+
+  <h1>Employees</h1>
+	<ul>
+	{% for employee in object_list %}
+    <li>{{ employee.firt_name }} - {{ employee.last_name }}</li>
+	{% empty %}
+    	<li>No employees yet.</li>
+	{% endfor %}
+	</ul>
+
+
+
+<body>
+</body>
+</html>
