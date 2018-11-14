@@ -1,5 +1,6 @@
 <!doctype html>
 
+
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -10,7 +11,11 @@
   <h1>Employees</h1>
 	<ul>
 	{% for employee in object_list %}
-    <li>{{ employee.firt_name }} - {{ employee.last_name }}</li>
+    <li>{{ employee.first_name }} {{ employee.last_name }} :
+         {% for badge in employee.badges.all %}
+                 {{badge.name}}{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    </li>
 	{% empty %}
     	<li>No employees yet.</li>
 	{% endfor %}
