@@ -1,14 +1,8 @@
-<!doctype html>
 
+{% extends 'base.html' %}
 
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-
-  <title>Badge List</title>
-</head>
-
-  <h1>Badges</h1>
+{% block content %}
+    <h1>Badges</h1>
 	<ul>
 	{% for badge in object_list %}
         <li>{{ badge.name }}</li> 
@@ -16,9 +10,11 @@
     	<li>No badges yet.</li>
 	{% endfor %}
 	</ul>
+{% endblock %}
 
 
 
-<body>
-</body>
-</html>
+
+
+
+

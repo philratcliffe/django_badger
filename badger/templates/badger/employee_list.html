@@ -1,14 +1,8 @@
-<!doctype html>
 
+{% extends 'base.html' %}
 
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-
-  <title>Employee List</title>
-</head>
-
-  <h1>Employees</h1>
+{% block content %}
+    <h1>Employees</h1>
 	<ul>
 	{% for employee in object_list %}
     <li>{{ employee.first_name }} {{ employee.last_name }} :
@@ -20,9 +14,7 @@
     	<li>No employees yet.</li>
 	{% endfor %}
 	</ul>
+{% endblock %}
 
 
 
-<body>
-</body>
-</html>
