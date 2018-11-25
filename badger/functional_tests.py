@@ -11,10 +11,10 @@ class NewVisitorTest(unittest.TestCase):
 
     def test_get_the_expected_root_home_page(self):
         # Terry has heard about a cool new online app. She goes
-        # to check out its homepage
+        # to check out its homepage.
         self.browser.get('http://localhost:8000')
 
-        # She notices the page title and header mention Badge
+        # She notices that the page title and header mention Badge
         self.assertIn('Badge', self.browser.title)
 
 if __name__ == '__main__':

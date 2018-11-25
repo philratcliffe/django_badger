@@ -58,3 +58,19 @@ class EmployeeUpdateViewTests(TestCase):
         self.assertEqual(response.status_code, 302)
         first_name = Employee.objects.first().first_name
         self.assertEqual(self.updated_first_name, first_name)
+
+class EmployeeListViewTests(TestCase):
+    def setUp(self):
+        self.first_name = "fred"
+        self.last_name = "flintstone"
+
+        Employee.objects.create(
+            first_name=self.first_name, last_name=self.last_name)
+
+    def test_list_employees_page_returns_correct_html(self):
+        response = self.client.get(reverse('badger:employee_list'))
+        self.assertEqual(response.status_code, 200)
+        html = response.content.decode('utf8').strip('\n')
+        self.assertTrue(html.startswith('<!doctype html>'))
+        self.assertIn(self.first_name, html)
+        self.assertIn(self.last_name, html)
