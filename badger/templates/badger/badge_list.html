@@ -5,7 +5,7 @@
     <h1>Badges</h1>
 	<ul>
 	{% for badge in object_list %}
-        <li>{{ badge.name }}</li> 
+    <li><a href={% url 'badger:badge_update' badge.slug %}>{{ badge.name }}</a></li> 
 	{% empty %}
     	<li>No badges yet.</li>
 	{% endfor %}

@@ -11,6 +11,6 @@ urlpatterns = [
     path('employee_update/<slug:slug>/', views.EmployeeUpdate.as_view(), name='employee_update'),
     path('employee_list/', views.EmployeeList.as_view(), name='employee_list'),
     path('badge_create/', views.BadgeCreate.as_view(), name='badge_create'),
-    path('badge_update/<int:pk>/', views.BadgeUpdate.as_view(), name='badge_update'),
+    path('badge_update/<slug:slug>/', views.BadgeUpdate.as_view(), name='badge_update'),
     path('badge_list/', views.BadgeList.as_view(), name='badge_list'),
 ]
