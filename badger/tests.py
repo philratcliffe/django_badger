@@ -5,6 +5,7 @@ from django.views.generic import TemplateView
 from django.http import HttpRequest
 from .models import Employee
 
+
 class BadgerHomePageTest(TestCase):
     def test_badger_root_url_resolves_to_template_view(self):
 
@@ -58,6 +59,7 @@ class EmployeeUpdateViewTests(TestCase):
         self.assertEqual(response.status_code, 302)
         first_name = Employee.objects.first().first_name
         self.assertEqual(self.updated_first_name, first_name)
+
 
 class EmployeeListViewTests(TestCase):
     def setUp(self):
