@@ -1,6 +1,7 @@
 from model_utils.models import TimeStampedModel
 from django.template.defaultfilters import slugify
 from django.db import models
+from .validators import validate_employee_name
 
 class Badge(TimeStampedModel):
     name = models.CharField(max_length=50)
@@ -17,8 +18,8 @@ class Badge(TimeStampedModel):
         ordering = ["name"]
 
 class Employee(TimeStampedModel):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
+    first_name = models.CharField(max_length=30, validators=[validate_employee_name])
+    last_name = models.CharField(max_length=30, validators=[validate_employee_name])
     badges = models.ManyToManyField(Badge, blank=True)
     slug = models.SlugField(unique=True, null=True)
 
