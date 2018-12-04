@@ -31,11 +31,13 @@ class BadgerHomePageTest(TestCase):
 
 class EmployeeCreateViewTests(TestCase):
     def test_create_employee(self):
-        self.client.post(
+        response = self.client.post(
             reverse('badger:employee_create'), {
                 'first_name': "fred",
                 'last_name': "bloggs",
-            })
+            }, follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "fred bloggs")
         self.assertEqual(Employee.objects.last().first_name, "fred")
 
 
@@ -50,15 +52,18 @@ class EmployeeUpdateViewTests(TestCase):
 
     def test_update_employee(self):
         employee = Employee.objects.first()
-        pk = employee.pk
+        slug = employee.slug
         response = self.client.post(
-            reverse('badger:employee_update', args=[pk]), {
+            reverse('badger:employee_update', args=[slug]), {
                 'first_name': self.updated_first_name,
                 'last_name': self.last_name
-            })
-        self.assertEqual(response.status_code, 302)
+            }, follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "wilma flintstone")
         first_name = Employee.objects.first().first_name
         self.assertEqual(self.updated_first_name, first_name)
+        last_name = Employee.objects.first().last_name
+        self.assertEqual(self.last_name, last_name)
 
 
 class EmployeeListViewTests(TestCase):

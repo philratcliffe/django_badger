@@ -8,7 +8,7 @@ from .models import Badge
 class EmployeeCreate(CreateView):
     model = Employee
     fields = ['first_name', 'last_name', 'badges']
-    success_url = '/admin'
+    success_url = reverse_lazy('badger:employee_list')
 
 
 class EmployeeUpdate(UpdateView):
@@ -25,7 +25,7 @@ class EmployeeList(ListView):
 class BadgeCreate(CreateView):
     model = Badge
     fields = ['name']
-    success_url = '/admin'
+    success_url = reverse_lazy('badger:badge_list')
 
 
 class BadgeUpdate(UpdateView):
