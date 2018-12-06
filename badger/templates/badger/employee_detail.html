@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> Employee Details</h1>
+<p>Name: {{ object.first_name }} {{ object.last_name }}</p>
+<p>Badges: 
+	{% for badge in object.badges.all %}
+		{{ badge.name }}{% if not forloop.last %},{% endif %}
+	{% endfor %}
+</p>
+
+<a class="btn btn-primary" href="{% url 'badger:employee_update' object.slug %} " role="button">Delete</a>
+<a class="btn btn-primary" href="{% url 'badger:employee_update' object.slug %} " role="button">Update</a>
+
+{% endblock %}
+
+
+
+

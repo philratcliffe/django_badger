@@ -5,7 +5,7 @@
     <h1>Employees</h1>
 	<ul>
 	{% for employee in object_list %}
-        <li><a href="{% url 'badger:employee_update' employee.slug %}"> {{employee.first_name }} {{ employee.last_name }} </a>:
+        <li><a href="{% url 'badger:employee_detail' employee.slug %}"> {{employee.first_name }} {{ employee.last_name }} </a>:
          {% for badge in employee.badges.all %}
                  {{badge.name}}{% if not forloop.last %},{% endif %}
         {% endfor %}
