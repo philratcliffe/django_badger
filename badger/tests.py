@@ -36,9 +36,21 @@ class EmployeeCreateViewTests(TestCase):
                 'first_name': "fred",
                 'last_name': "bloggs",
             }, follow=True)
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "fred bloggs")
+        html = response.content.decode('utf8')
+        self.assertIn("fred bloggs", html)
         self.assertEqual(Employee.objects.last().first_name, "fred")
+
+class DetailViewTests(TestCase):
+
+    def setUp(self):
+        employee = Employee.objects.create(first_name='fred', last_name='flintstone')
+        self.slug = employee.slug
+
+    def test_details_view_shows_employee_name(self):
+        response = self.client.get(reverse('badger:employee_detail', args=[self.slug]))
+        self.assertEqual(response.status_code, 200)
+        html = response.content.decode('utf8')
+        self.assertIn("fred flintstone", html)
 
 
 class EmployeeUpdateViewTests(TestCase):
