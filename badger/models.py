@@ -1,7 +1,9 @@
+import itertools
 from model_utils.models import TimeStampedModel
 from django.template.defaultfilters import slugify
 from django.db import models
 from .validators import validate_employee_name
+
 
 class Badge(TimeStampedModel):
     name = models.CharField(max_length=50)
@@ -17,14 +19,22 @@ class Badge(TimeStampedModel):
     class Meta:
         ordering = ["name"]
 
+
 class Employee(TimeStampedModel):
-    first_name = models.CharField(max_length=30, validators=[validate_employee_name])
-    last_name = models.CharField(max_length=30, validators=[validate_employee_name])
+    first_name = models.CharField(
+        max_length=30, validators=[validate_employee_name])
+    last_name = models.CharField(
+        max_length=30, validators=[validate_employee_name])
     badges = models.ManyToManyField(Badge, blank=True)
-    slug = models.SlugField(unique=True, null=True)
+    slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify("{} {} {}".format(self.first_name, self.last_name, self.pk))
+        slug = slugify("{} {}".format(self.first_name, self.last_name))
+        for x in itertools.count(1):
+            if not Employee.objects.filter(slug=slug).exists():
+                break
+            slug = '%s-%d' % (slug, x)
+        self.slug = slug
         super(Employee, self).save(*args, **kwargs)
 
     def __str__(self):
