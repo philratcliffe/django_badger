@@ -7,10 +7,15 @@ from .validators import validate_employee_name
 
 class Badge(TimeStampedModel):
     name = models.CharField(max_length=50)
-    slug = models.SlugField(unique=True, null=True)
+    slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
+        slug = slugify(self.name)
+        for x in itertools.count(1):
+            if not Employee.objects.filter(slug=slug).exists():
+                break
+            slug = '%s-%d' % (slug, x)
+        self.slug = slug
         super(Badge, self).save(*args, **kwargs)
 
     def __str__(self):
