@@ -10,7 +10,7 @@
 	{% endfor %}
 </p>
 
-<a class="btn btn-primary" href="{% url 'badger:employee_update' object.slug %} " role="button">Delete</a>
+<a class="btn btn-primary" href="{% url 'badger:employee_delete' object.slug %} " role="button">Delete</a>
 <a class="btn btn-primary" href="{% url 'badger:employee_update' object.slug %} " role="button">Update</a>
 
 {% endblock %}

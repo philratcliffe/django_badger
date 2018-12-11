@@ -23,6 +23,11 @@ class EmployeeUpdate(UpdateView):
     success_url = reverse_lazy('badger:employee_list')
 
 
+class EmployeeDelete(DeleteView):
+    model = Employee
+    success_url = reverse_lazy('badger:employee_list')
+
+
 class EmployeeList(ListView):
     model = Employee
     paginate_by = 100
