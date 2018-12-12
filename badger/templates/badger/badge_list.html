@@ -2,7 +2,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Badges</h1>
+    <h2>Badges</h2>
 	<ul>
 	{% for badge in object_list %}
     <li><a href={% url 'badger:badge_update' badge.slug %}>{{ badge.name }}</a></li> 
