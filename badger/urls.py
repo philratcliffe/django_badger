@@ -15,4 +15,5 @@ urlpatterns = [
     path('badge_create/', views.BadgeCreate.as_view(), name='badge_create'),
     path('badge_update/<slug:slug>/', views.BadgeUpdate.as_view(), name='badge_update'),
     path('badge_list/', views.BadgeList.as_view(), name='badge_list'),
+    path('api/', views.EmployeeViewSet.as_view({'get':'list'}), name='employee_api')
 ]
