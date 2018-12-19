@@ -18,6 +18,8 @@ from django.urls import include
 from django.urls import path
 from django.conf import settings
 from django.views.generic import RedirectView
+from django.views.generic.edit import CreateView
+from django.contrib.auth.forms import UserCreationForm
 import badger
 
 urlpatterns = [
@@ -25,6 +27,23 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('badger/', include('badger.urls', namespace='badger')),
 ]
+
+
+# Django builtin authentication urls (for login, logout, password management)
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
+]
+
+# Add regitstration
+
+urlpatterns += [
+    path('accounts/register/', CreateView.as_view(
+        template_name='registration/register.html',
+        form_class=UserCreationForm,
+        success_url='/',
+    )),
+]
+
 
 if settings.DEBUG:
     import debug_toolbar

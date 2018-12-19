@@ -1,53 +1,54 @@
-from rest_framework import viewsets
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from rest_framework import viewsets
 from .models import Employee
 from .models import Badge
 from .serializers import EmployeeSerializer
 
 
-class EmployeeCreate(CreateView):
+class EmployeeCreate(LoginRequiredMixin, CreateView):
     model = Employee
     fields = ['first_name', 'last_name', 'badges']
     success_url = reverse_lazy('badger:employee_list')
 
 
-class EmployeeDetail(DetailView):
+class EmployeeDetail(LoginRequiredMixin, DetailView):
     model = Employee
     fields = ['first_name', 'last_name', 'badges']
 
 
-class EmployeeUpdate(UpdateView):
+class EmployeeUpdate(LoginRequiredMixin, UpdateView):
     model = Employee
     fields = ['first_name', 'last_name', 'badges']
     success_url = reverse_lazy('badger:employee_list')
 
 
-class EmployeeDelete(DeleteView):
+class EmployeeDelete(LoginRequiredMixin, DeleteView):
     model = Employee
     success_url = reverse_lazy('badger:employee_list')
 
 
-class EmployeeList(ListView):
+class EmployeeList(LoginRequiredMixin, ListView):
     model = Employee
     paginate_by = 100
 
 
-class BadgeCreate(CreateView):
+class BadgeCreate(LoginRequiredMixin, CreateView):
     model = Badge
     fields = ['name']
     success_url = reverse_lazy('badger:badge_list')
 
 
-class BadgeUpdate(UpdateView):
+class BadgeUpdate(LoginRequiredMixin, UpdateView):
     model = Badge
     fields = ['name']
     success_url = reverse_lazy('badger:badge_list')
 
 
-class BadgeList(ListView):
+class BadgeList(LoginRequiredMixin, ListView):
     model = Badge
     paginate_by = 100
 
