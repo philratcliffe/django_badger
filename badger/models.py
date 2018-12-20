@@ -1,7 +1,10 @@
 import itertools
-from model_utils.models import TimeStampedModel
+
 from django.template.defaultfilters import slugify
 from django.db import models
+from django.conf import settings
+from model_utils.models import TimeStampedModel
+
 from .validators import validate_employee_name
 
 
@@ -23,6 +26,14 @@ class Badge(TimeStampedModel):
 
     class Meta:
         ordering = ["name"]
+
+
+class BadgeAwarded(TimeStampedModel):
+    badge = models.ForeignKey(Badge, on_delete=models.CASCADE)
+    user =  models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name_plural = "BadgesAwarded"
 
 
 class Employee(TimeStampedModel):
