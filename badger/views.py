@@ -3,10 +3,11 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+
 from rest_framework import viewsets
-from .models import Employee
+
 from .models import Badge
-from .serializers import EmployeeSerializer
+from .models import Employee
 
 
 class EmployeeCreate(LoginRequiredMixin, CreateView):
@@ -51,10 +52,3 @@ class BadgeUpdate(LoginRequiredMixin, UpdateView):
 class BadgeList(LoginRequiredMixin, ListView):
     model = Badge
     paginate_by = 100
-
-
-class EmployeeViewSet(viewsets.ModelViewSet):
-    queryset = Employee.objects.all().order_by('-last_name')
-    serializer_class = EmployeeSerializer
-
-

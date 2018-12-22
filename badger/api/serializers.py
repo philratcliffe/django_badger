@@ -1,6 +1,7 @@
 from rest_framework import serializers
-from .models import Badge
-from .models import Employee
+
+from badger.models import Badge
+from badger.models import Employee
 
 class BadgeSerializer(serializers.ModelSerializer):
 
