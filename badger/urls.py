@@ -8,15 +8,11 @@ from . import views
 from .api.views import EmployeeViewSet
 
 
-# Routers provide an easy way of automatically determining the URL conf.
-router = routers.DefaultRouter()
-router.register(r'api', EmployeeViewSet)
-
 app_name = 'badger'
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='badger/index.html'), name='index'),
-    path('', include(router.urls)),
+    path('', include('badger.api.urls')),
     path('employee_create/', views.EmployeeCreate.as_view(), name='employee_create'),
     path('employee_detail/<slug:slug>/', views.EmployeeDetail.as_view(), name='employee_detail'),
     path('employee_update/<slug:slug>/', views.EmployeeUpdate.as_view(), name='employee_update'),
