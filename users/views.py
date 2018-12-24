@@ -1,3 +1,14 @@
-from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import  DetailView
 
-# Create your views here.
+from .models import CustomUser
+
+class UserDetail(LoginRequiredMixin, DetailView):
+    model = CustomUser
+    fields = ['username', 'emailaddress']
+
+    def get_object(self):
+        return self.request.user
+
+
+

@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 class CustomUser(AbstractUser):
-    job_description = models.CharField(max_length=30)
+    job_title = models.CharField(max_length=30)
 
     def __str__(self):
         return self.email

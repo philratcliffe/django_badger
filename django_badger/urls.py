@@ -25,6 +25,7 @@ import badger
 urlpatterns = [
     path('', RedirectView.as_view(pattern_name='badger:employee_list', permanent=True)),
     path('admin/', admin.site.urls),
+    path('users/', include('users.urls', namespace='users')),
     path('badger/', include('badger.urls', namespace='badger')),
 ]
 
