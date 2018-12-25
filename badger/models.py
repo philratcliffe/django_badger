@@ -28,9 +28,19 @@ class Badge(TimeStampedModel):
         ordering = ["name"]
 
 
+class BadgeAwardedManager(models.Manager):
+
+    def badges(self, user):
+        return self.filter(user=user)
+
 class BadgeAwarded(TimeStampedModel):
     badge = models.ForeignKey(Badge, on_delete=models.CASCADE)
     user =  models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    user_badges = BadgeAwardedManager()
+
+    def __str__(self):
+        return self.badge.name
 
     class Meta:
         verbose_name_plural = "BadgesAwarded"

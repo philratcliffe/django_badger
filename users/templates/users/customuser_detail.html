@@ -4,6 +4,12 @@
 <h1> User Details</h1>
 <p>Name: {{ object.username }}</p>
 <p>Email: {{ object.email }}</p>
+<p>Badges: 
+         {% for award in badges_awarded %}
+                 {{award.badge}}{% if not forloop.last %},{% endif %}
+        {% endfor %}
+</p>
+
 {% endblock %}
 
 
