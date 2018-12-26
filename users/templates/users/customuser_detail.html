@@ -1,17 +1,12 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<h1> User Details</h1>
-<p>Name: {{ object.username }}</p>
-<p>Email: {{ object.email }}</p>
-<p>Badges: 
-         {% for award in badges_awarded %}
-                 {{award.badge}}{% if not forloop.last %},{% endif %}
-        {% endfor %}
-</p>
-
+<h1>User Details</h1>
+<p>username: {{ user.username }}</p>
+<p>firstname: {{ user.first_name }}</p>
+<p>lastname: {{ user.last_name }}</p>
+<p>jobtitle: {{ user.job_title }}</p>
+<p>Email: {{ user.email }}</p>
+<p>Badges: {% for badge_awarded in user.badges_awarded.all %}
+  {{badge_awarded.badge}}{% if not forloop.last %},{% endif %} {%
+  endfor %}</p>
 {% endblock %}
-
-
-
-

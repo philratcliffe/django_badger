@@ -29,13 +29,17 @@ class Badge(TimeStampedModel):
 
 
 class BadgeAwardedManager(models.Manager):
-
     def badges(self, user):
         return self.filter(user=user)
 
+
 class BadgeAwarded(TimeStampedModel):
     badge = models.ForeignKey(Badge, on_delete=models.CASCADE)
-    user =  models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='badges_awarded',
+    )
 
     user_badges = BadgeAwardedManager()
 
