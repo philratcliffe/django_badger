@@ -8,4 +8,5 @@ app_name = 'users'
 
 urlpatterns = [
     path('user_detail/', views.UserDetail.as_view(), name='user_detail'),
+    path('', include('users.api.urls')),
 ]

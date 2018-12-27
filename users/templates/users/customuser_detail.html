@@ -6,7 +6,5 @@
 <p>lastname: {{ user.last_name }}</p>
 <p>jobtitle: {{ user.job_title }}</p>
 <p>Email: {{ user.email }}</p>
-<p>Badges: {% for badge_awarded in user.badges_awarded.all %}
-  {{badge_awarded.badge}}{% if not forloop.last %},{% endif %} {%
-  endfor %}</p>
+<p>Badges: {% for badge_awarded in user.badges_awarded.all %} {{badge_awarded.badge}}{% if not forloop.last %},{% endif %} {% endfor %}</p>
 {% endblock %}

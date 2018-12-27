@@ -1,4 +1,15 @@
 # django_badger
+Award badges to employees
+
+## Curl commands to exercise API
+
+You can test the API from the command line using cURL. If you pipe the
+response to json_pp it will format the returned data. 
+
+### List users 
+```bash
+$ curl  -u fred:mypassword http://127.0.0.1:8000/users/api/ | json_pp
+```
 
 ## Prerequisites to run functional tests
 The functional tests use the Firefox web browser and Geckodriver.
