@@ -11,7 +11,7 @@ class BadgeSerializer(serializers.ModelSerializer):
 
 
 class EmployeeSerializer(serializers.ModelSerializer):
-    badges = BadgeSerializer(read_only=True, many=True)
+    badges = BadgeSerializer(many=True)
 
     class Meta:
         model = Employee

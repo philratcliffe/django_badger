@@ -5,7 +5,6 @@ from django.views.generic import TemplateView
 from rest_framework import routers
 
 from . import views
-from .api.views import EmployeeViewSet
 
 
 app_name = 'badger'
