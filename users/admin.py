@@ -5,6 +5,10 @@ from django.contrib.auth.admin import UserAdmin
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from .models import CustomUser
 
+
+from django.contrib.admin import AdminSite
+from django.utils.translation import ugettext_lazy
+
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
     add_form = CustomUserCreationForm
@@ -13,3 +17,4 @@ class CustomUserAdmin(UserAdmin):
 
 UserAdmin.fieldsets += ('Custom fields set', {'fields': ('job_title', )}),
 admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.site_header = 'Badger Administration'
