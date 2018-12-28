@@ -128,3 +128,12 @@ STATIC_URL = '/static/'
 INTERNAL_IPS = ['127.0.0.1', ]
 LOGIN_REDIRECT_URL = 'users:user_detail'
 AUTH_USER_MODEL = 'users.CustomUser'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+	'rest_framework.authentication.BasicAuthentication',
+    ),
+     'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
+}
