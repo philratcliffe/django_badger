@@ -13,7 +13,10 @@ class CustomUserAdmin(UserAdmin):
     model = CustomUser
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
-    list_display = ['username', 'email', 'job_title']
+    list_display = ['username', 'email', 'job_title', 'badges']
+
+    def badges(self, obj):
+        return ', '.join([str(ba.badge) for ba in obj.badges_awarded.all()])
 
 UserAdmin.fieldsets += ('Custom fields set', {'fields': ('job_title', )}),
 admin.site.register(CustomUser, CustomUserAdmin)
