@@ -1,5 +1,6 @@
 from rest_framework import generics
 from rest_framework.permissions import BasePermission, IsAdminUser, SAFE_METHODS
+from rest_framework.permissions import DjangoModelPermissions
 from users.models import CustomUser
 from .serializers import CustomUserSerializer
 
@@ -10,7 +11,7 @@ class ReadOnlyAndAuthenticated(BasePermission):
 
 
 class CustomUserList(generics.ListCreateAPIView):
-    permission_classes = (IsAdminUser| ReadOnlyAndAuthenticated, )
+    permission_classes = (DjangoModelPermissions| ReadOnlyAndAuthenticated, )
 
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
