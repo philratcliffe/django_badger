@@ -1,8 +1,8 @@
 from selenium import webdriver
 import unittest
 
-class NewVisitorTest(unittest.TestCase):
 
+class NewVisitorTest(unittest.TestCase):
     def setUp(self):
         self.browser = webdriver.Firefox()
 
@@ -16,6 +16,7 @@ class NewVisitorTest(unittest.TestCase):
 
         # She notices that the page title and header mention Badge
         self.assertIn('Badge', self.browser.title)
+
 
 if __name__ == '__main__':
     unittest.main(warnings='ignore')

@@ -5,9 +5,9 @@ from django.contrib.auth.admin import UserAdmin
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from .models import CustomUser
 
-
 from django.contrib.admin import AdminSite
 from django.utils.translation import ugettext_lazy
+
 
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
@@ -17,6 +17,7 @@ class CustomUserAdmin(UserAdmin):
 
     def badges(self, obj):
         return ', '.join([str(ba.badge) for ba in obj.badges_awarded.all()])
+
 
 UserAdmin.fieldsets += ('Custom fields set', {'fields': ('job_title', )}),
 admin.site.register(CustomUser, CustomUserAdmin)
