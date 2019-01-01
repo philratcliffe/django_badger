@@ -5,3 +5,4 @@ djangorestframework==3.9.0
 werkzeug
 django-debug-toolbar
 selenium
+psycopg2
