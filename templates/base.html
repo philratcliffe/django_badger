@@ -32,16 +32,6 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="{% url 'badger:employee_list' %}" id="navbarDropdownMenuLink"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Employees
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="{% url 'badger:employee_list' %}">List</a>
-                    <a class="dropdown-item" href="{% url 'badger:employee_create' %}">Create</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="{% url 'badger:employee_list' %}" id="navbarDropdownMenuLink"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Badges
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -50,11 +40,20 @@
                 </div>
             </li>
         </ul>
+        {% if user.is_authenticated %}
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/accounts/logout/">{{ user.username }}</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="{% url 'users:user_profile' %}" id="navbarDropdownMenuLink"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   {{user.username}}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/accounts/logout/">Logout</a>
+                    <a class="dropdown-item" href="{% url 'users:user_profile' %}">Profile</a>
+                </div>
             </li>
         </ul>
+        {% endif %}
     </div>
 </nav>
 
