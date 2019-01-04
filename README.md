@@ -1,14 +1,20 @@
-# django_badger
-Award badges to employees
+# Django Badger
+Award Badges
 
-## Curl commands to exercise API
-
+## Examples of cURL commands to exercise API
 You can test the API from the command line using cURL. If you pipe the
 response to json_pp it will format the returned data. 
 
+### Add user
+```bash
+curl -i \
+-u admin2:somepasswd \
+-H "Content-Type: application/json" \
+-X POST --data '{"email": "user@abc.com", "password": "notsecret", "username": "user1"}' http://localhost:8000/users/api/
+```
 ### List users 
 ```bash
-$ curl  -u fred:mypassword http://127.0.0.1:8000/users/api/ | json_pp
+$ curl  -u fred:mypassword http://localhost:8000/users/api/ | json_pp
 ```
 
 ## Prerequisites to run functional tests
