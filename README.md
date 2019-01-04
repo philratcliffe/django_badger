@@ -1,7 +1,7 @@
 # Django Badger
 Award Badges
 
-## Examples of cURL commands to exercise API
+## Example cURL commands to exercise the API
 You can test the API from the command line using cURL. If you pipe the
 response to json_pp it will format the returned data. 
 
@@ -17,9 +17,16 @@ curl -i \
 $ curl  -u fred:mypassword http://localhost:8000/users/api/ | json_pp
 ```
 
-## Examples of Docker commands
+## Example Docker commands
+You can run commands in Docker containers. Some examples are given below:
+
 ```bash
-docker-compose run web sh api_test_scripts/add_user.sh user1
+$ docker-compose exec web sh api_test_scripts/add_user.sh user1
+```
+
+```bash
+$ docker-compose exec web ./manage.py makemigrations
+$ docker-compose exec web ./manage.py migrate
 ```
 
 ## Prerequisites to run functional tests
