@@ -6,5 +6,18 @@
 <p>lastname: {{ user.last_name }}</p>
 <p>jobtitle: {{ user.job_title }}</p>
 <p>Email: {{ user.email }}</p>
-<p>Badges: {% for badge_awarded in user.badges_awarded.all %} {{badge_awarded.badge}}{% if not forloop.last %},{% endif %} {% endfor %}</p>
+<p>Badges:
+<table class="table">
+        <tr>
+            <th>Badge</th>
+            <th>Date Awarded</th>
+        </tr>
+        {% for badge_awarded in user.badges_awarded.all %} 
+        <tr>
+            <td>{{badge_awarded.badge}}</td>
+            <td>{{badge_awarded.created | date:"d M y"}}</td>
+        </tr>
+        {% endfor %}
+</table>
+</p>
 {% endblock %}
