@@ -17,6 +17,11 @@ curl -i \
 $ curl  -u fred:mypassword http://localhost:8000/users/api/ | json_pp
 ```
 
+## Examples of Docker commands
+```bash
+docker-compose run web sh api_test_scripts/add_user.sh user1
+```
+
 ## Prerequisites to run functional tests
 The functional tests use the Firefox web browser and Geckodriver.
 
