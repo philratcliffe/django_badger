@@ -49,6 +49,9 @@ class BadgeAwarded(TimeStampedModel):
     class Meta:
         verbose_name_plural = "BadgesAwarded"
 
+        # A Badge can only awarded once to user
+        unique_together = ('user', 'badge')
+
 
 class Employee(TimeStampedModel):
     first_name = models.CharField(
