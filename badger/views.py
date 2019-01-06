@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import PermissionDenied
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
@@ -42,11 +43,20 @@ class BadgeCreate(LoginRequiredMixin, CreateView):
     fields = ['name']
     success_url = reverse_lazy('badger:badge_list')
 
-
 class BadgeUpdate(LoginRequiredMixin, UpdateView):
     model = Badge
     fields = ['name']
     success_url = reverse_lazy('badger:badge_list')
+
+    def dispatch(self, request, *args, **kwargs):
+        user = request.user
+        if user.has_perm('badger.change_badge'):
+            return super(BadgeUpdate, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+
+class BadgeDelete(LoginRequiredMixin, DeleteView):
+    model = Badge
 
 
 class BadgeList(LoginRequiredMixin, ListView):
