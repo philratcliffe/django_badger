@@ -28,11 +28,6 @@ class Badge(TimeStampedModel):
         ordering = ["name"]
 
 
-class BadgeAwardedManager(models.Manager):
-    def badges(self, user):
-        return self.filter(user=user)
-
-
 class BadgeAwarded(TimeStampedModel):
     badge = models.ForeignKey(Badge, on_delete=models.CASCADE)
     user = models.ForeignKey(
@@ -40,8 +35,6 @@ class BadgeAwarded(TimeStampedModel):
         on_delete=models.CASCADE,
         related_name='badges_awarded',
     )
-
-    user_badges = BadgeAwardedManager()
 
     def __str__(self):
         return self.badge.name
