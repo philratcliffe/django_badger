@@ -4,6 +4,7 @@ from django.test import TestCase
 from django.views.generic import TemplateView
 from django.http import HttpRequest
 from .models import Employee
+from users.models import CustomUser
 
 
 class BadgerHomePageTest(TestCase):
@@ -58,6 +59,9 @@ class DetailViewTests(TestCase):
 
 class EmployeeUpdateViewTests(TestCase):
     def setUp(self):
+        self.user = CustomUser.objects.create(username='user1')
+        self.user.set_password('pass')
+        self.user.save()
         self.first_name = "fred"
         self.last_name = "flintstone"
         self.updated_first_name = "wilma"
@@ -68,6 +72,7 @@ class EmployeeUpdateViewTests(TestCase):
     def test_update_employee(self):
         employee = Employee.objects.first()
         slug = employee.slug
+        self.client.login(username='user1', password='pass')
         response = self.client.post(
             reverse('badger:employee_update', args=[slug]), {
                 'first_name': self.updated_first_name,
