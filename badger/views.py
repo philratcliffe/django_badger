@@ -43,6 +43,7 @@ class BadgeCreate(LoginRequiredMixin, CreateView):
     fields = ['name']
     success_url = reverse_lazy('badger:badge_list')
 
+
 class BadgeUpdate(LoginRequiredMixin, UpdateView):
     model = Badge
     fields = ['name']
@@ -54,6 +55,7 @@ class BadgeUpdate(LoginRequiredMixin, UpdateView):
             return super(BadgeUpdate, self).dispatch(request, *args, **kwargs)
         else:
             raise PermissionDenied
+
 
 class BadgeDelete(LoginRequiredMixin, DeleteView):
     model = Badge

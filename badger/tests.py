@@ -31,7 +31,13 @@ class BadgerHomePageTest(TestCase):
 
 
 class EmployeeCreateViewTests(TestCase):
+    def setUp(self):
+        self.user = CustomUser.objects.create(username='user1')
+        self.user.set_password('pass')
+        self.user.save()
+
     def test_create_employee(self):
+        self.client.login(username='user1', password='pass')
         response = self.client.post(
             reverse('badger:employee_create'), {
                 'first_name': "fred",
