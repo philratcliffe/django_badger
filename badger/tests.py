@@ -51,11 +51,15 @@ class EmployeeCreateViewTests(TestCase):
 
 class DetailViewTests(TestCase):
     def setUp(self):
+        self.user = CustomUser.objects.create(username='user1')
+        self.user.set_password('pass')
+        self.user.save()
         employee = Employee.objects.create(
             first_name='fred', last_name='flintstone')
         self.slug = employee.slug
 
     def test_details_view_shows_employee_name(self):
+        self.client.login(username='user1', password='pass')
         response = self.client.get(
             reverse('badger:employee_detail', args=[self.slug]))
         self.assertEqual(response.status_code, 200)
