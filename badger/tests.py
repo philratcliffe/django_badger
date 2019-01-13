@@ -99,6 +99,9 @@ class EmployeeUpdateViewTests(TestCase):
 
 class EmployeeListViewTests(TestCase):
     def setUp(self):
+        self.user = CustomUser.objects.create(username='user1')
+        self.user.set_password('pass')
+        self.user.save()
         self.first_name = "fred"
         self.last_name = "flintstone"
 
@@ -106,6 +109,7 @@ class EmployeeListViewTests(TestCase):
             first_name=self.first_name, last_name=self.last_name)
 
     def test_list_employees_page_returns_correct_html(self):
+        self.client.login(username='user1', password='pass')
         response = self.client.get(reverse('badger:employee_list'))
         self.assertEqual(response.status_code, 200)
         html = response.content.decode('utf8').strip('\n')
