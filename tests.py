@@ -6,4 +6,4 @@ class HomePageTest(TestCase):
 
     def test_root_url_resolves_to_template_view(self):
         found = resolve('/')
-        self.assertEqual(found.func.__name__, "TemplateView")
+        self.assertEqual(found.func.__name__, "RedirectView")
