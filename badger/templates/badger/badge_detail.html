@@ -1,0 +1,15 @@
+% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Badge Details</h1>
+<p>Name: {{ object.name }}</p>
+
+<a class="btn btn-primary" href="{% url 'badger:badge_delete' object.slug %} " role="button">Delete</a>
+<a class="btn btn-primary" href="{% url 'badger:badge_update' object.slug %} " role="button">Update</a>
+
+{% endblock %}
+
+
+
+

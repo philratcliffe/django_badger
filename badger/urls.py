@@ -37,4 +37,5 @@ urlpatterns = [
         views.BadgeUpdate.as_view(),
         name='badge_update'),
     path('badge_list/', views.BadgeList.as_view(), name='badge_list'),
+    path('badge_delete/', views.BadgeDelete.as_view(), name='badge_delete'),
 ]
