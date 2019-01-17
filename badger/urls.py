@@ -38,5 +38,5 @@ urlpatterns = [
         name='badge_update'),
     path('badge_list/', views.BadgeList.as_view(), name='badge_list'),
     path('badge_detail/<slug:slug>/', views.BadgeDetail.as_view(), name='badge_detail'),
-    path('badge_delete/', views.BadgeDelete.as_view(), name='badge_delete'),
+    path('badge_delete/<slug:slug>', views.BadgeDelete.as_view(), name='badge_delete'),
 ]
