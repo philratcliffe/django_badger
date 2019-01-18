@@ -63,6 +63,7 @@ class BadgeUpdate(LoginRequiredMixin, UpdateView):
 
 class BadgeDelete(LoginRequiredMixin, DeleteView):
     model = Badge
+    success_url = reverse_lazy('badger:badge_list')
 
 
 class BadgeList(LoginRequiredMixin, ListView):
