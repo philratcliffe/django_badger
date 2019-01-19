@@ -47,6 +47,12 @@ class BadgeCreate(LoginRequiredMixin, CreateView):
     fields = ['name']
     success_url = reverse_lazy('badger:badge_list')
 
+    def dispatch(self, request, *args, **kwargs):
+        user = request.user
+        if user.has_perm('badger.add_badge'):
+            return super(BadgeCreate, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
 
 class BadgeUpdate(LoginRequiredMixin, UpdateView):
     model = Badge

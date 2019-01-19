@@ -1,9 +1,10 @@
+from django.contrib.auth.models import Permission
 from django.urls import resolve
 from django.urls import reverse
 from django.test import TestCase
 from django.views.generic import TemplateView
 from django.http import HttpRequest
-from .models import Employee
+from .models import Employee, Badge
 from users.models import CustomUser
 
 
@@ -29,6 +30,25 @@ class BadgerHomePageTest(TestCase):
         self.assertIn('Badger', html)
         self.assertTrue(html.endswith('</html>'))
 
+
+class BadgeCreateViewTests(TestCase):
+    def setUp(self):
+        self.user = CustomUser.objects.create(username='user1')
+        self.user.set_password('pass')
+        permission = Permission.objects.get(codename='add_badge')
+        self.user.user_permissions.add(permission)
+        self.user.save()
+
+    def test_create_badge(self):
+        self.client.login(username='user1', password='pass')
+        response = self.client.post(
+            reverse('badger:badge_create'), {
+                'name': "test-badge",
+            },
+            follow=True)
+        html = response.content.decode('utf8')
+        self.assertIn("test-badge", html)
+        self.assertEqual(Badge.objects.last().name, "test-badge")
 
 class EmployeeCreateViewTests(TestCase):
     def setUp(self):
