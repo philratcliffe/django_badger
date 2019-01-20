@@ -31,6 +31,23 @@ class BadgerHomePageTest(TestCase):
         self.assertTrue(html.endswith('</html>'))
 
 
+class BadgeListViewTests(TestCase):
+    def setUp(self):
+        self.user = CustomUser.objects.create(username='user1')
+        self.user.set_password('pass')
+        self.user.save()
+        self.badge_name = "testing 123 badge"
+        Badge.objects.create(
+            name=self.badge_name)
+
+
+    def test_list_badges(self):
+        self.client.login(username='user1', password='pass')
+        response = self.client.get(reverse('badger:badge_list'))
+        html = response.content.decode('utf8')
+        self.assertIn(self.badge_name, html)
+
+
 class BadgeCreateViewTests(TestCase):
     def setUp(self):
         self.user = CustomUser.objects.create(username='user1')
