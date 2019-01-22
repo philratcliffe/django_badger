@@ -71,5 +71,8 @@ class Employee(TimeStampedModel):
     def __str__(self):
         return "{} {}".format(self.first_name, self.last_name)
 
+    def get_absolute_url(self):
+        return reverse('badger:employee_detail', args=[self.slug])
+
     class Meta:
         ordering = ["last_name"]
