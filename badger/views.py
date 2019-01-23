@@ -37,10 +37,12 @@ class EmployeeList(LoginRequiredMixin, ListView):
     model = Employee
     paginate_by = 100
 
+
 class BadgeDetail(LoginRequiredMixin, DetailView):
     model = Badge
     fields = ['name']
     success_url = reverse_lazy('badger:badge_list')
+
 
 class BadgeCreate(LoginRequiredMixin, CreateView):
     model = Badge
@@ -53,6 +55,7 @@ class BadgeCreate(LoginRequiredMixin, CreateView):
             return super(BadgeCreate, self).dispatch(request, *args, **kwargs)
         else:
             raise PermissionDenied
+
 
 class BadgeUpdate(LoginRequiredMixin, UpdateView):
     model = Badge
